@@ -1,14 +1,24 @@
-import dotenv from 'dotenv';
 import express from 'express';
+import morgan from 'morgan';
+import connect from "./db/db.js";
 
-dotenv.config(); //to use enav varaibles
+
+import userRoutes from './routes/users.routes.js'
+
+connect();
 
  const app = express();
 
+ app.use(morgan('dev')); // will probide you logs of url
  app.use(express.json());
  app.use(express.urlencoded({extended:true}));
+
+
+ app.use('/users',userRoutes);
 
 
  app.get('/',(req,res) => {
     res.send('hello world');
  });
+
+ export default app;
