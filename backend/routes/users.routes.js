@@ -9,6 +9,9 @@ const router = Router();
 router.post('/register',
     body('email').isEmail().withMessage('Email must be valid email address'),
     body('password').isLength({min:3}).withMessage('Password must be atleast 8 characters'),
+
+    //confirm password if needed
+    // body('confirmPassword').isLength({min:3}).withMessage('Password did not match'),
     userController.createUserController
     );
 
