@@ -12,4 +12,36 @@ body('name').isString().withMessage('name is required'),
     projectController.createProjectController
 )
 
+router.get('/all',
+    authMiddleWare.authUser,
+    projectController.getAllProject
+)
+
+router.put('/add-user',
+    authMiddleWare.authUser,
+    body('projectId').isString().withMessage('Project ID is required'),
+    body('users').isArray({min:1}).withMessage('Users must be an array').bail().custom((users)=> users.every(user => typeof user === 'string')).withMessage('Each user must be a string'),
+    projectController.addUserToProject
+)
+
+router.put( '/remove-user',
+    authMiddleWare.authUser,
+    body( 'projectId' ).isString().withMessage( 'Project ID is required' ),
+    body( 'userId' ).isString().withMessage( 'User ID is required' ),
+    projectController.removeUserFromProject
+)
+
+router.get('/get-project/:projectId',
+    authMiddleWare.authUser,
+    projectController.getProjectById
+)
+
+router.get( '/get-project/:projectId/collaborators',
+    authMiddleWare.authUser,
+    projectController.getCollaborators
+)
+
+
+
+
 export default router;

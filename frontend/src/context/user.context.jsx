@@ -9,7 +9,6 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      // Simulating a decoded user (you might replace this with a real API call)
       setUser({ email: "example@gmail.com", name: "John Doe" });
     }
   }, []);

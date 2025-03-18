@@ -7,6 +7,7 @@ import cors from 'cors';
 
 import userRoutes from './routes/users.routes.js'
 import projectRoutes from './routes/project.routes.js'
+import aiRoutes from './routes/ai.routes.js'
 
 connect();
 
@@ -20,7 +21,8 @@ connect();
 
 
  app.use('/users',userRoutes);
- app.use('/projects',projectRoutes);
+app.use( '/projects', projectRoutes );
+ app.use('/ai',aiRoutes)
 
 
  app.get('/',(req,res) => {

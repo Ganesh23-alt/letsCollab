@@ -34,4 +34,6 @@ router.get('/logout',
     userController.userLogoutController
 );
 
+router.get('/all',authMiddleware.authUser, userController.getAllUsersController)
+
 export default router;
